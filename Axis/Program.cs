@@ -19,12 +19,18 @@ public class Program
 
         // Add services to the container
         builder.Services.AddControllersWithViews();
+        
+        // Add DbContext
         builder.Services.AddDbContext<ProgramManagementContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+        
+        // Register Services
+        builder.Services.AddScoped<IProjectService, ProjectService>();
+        
+        // Add AutoMapper
         builder.Services.AddAutoMapper(typeof(Program).Assembly);
         builder.Services.AddSwaggerGen();
 
-        // Build the app
         var app = builder.Build();
 
         // Configure the HTTP request pipeline
@@ -48,8 +54,6 @@ public class Program
             name: "default",
             pattern: "{controller=Home}/{action=Index}/{id?}");
 
-        app.Run();
-
         // Add DbContext
         builder.Services.AddDbContext<ProgramManagementContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -66,7 +70,6 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
-
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
