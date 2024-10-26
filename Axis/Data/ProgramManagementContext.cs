@@ -24,7 +24,12 @@ public class ProgramManagementContext : DbContext
         base.OnModelCreating(modelBuilder);
 
         // Project Configuration
-        modelBuilder.Entity<Project>(ConfigureProject);
+        modelBuilder.Entity<Project>(entity =>
+        {
+            entity.ToTable("CS_EXP_Project_Translation");
+            entity.HasKey(e => e.ProjectId);
+            // Other configurations from your existing ConfigureProject method
+        });
 
         // YLine Configuration
         modelBuilder.Entity<YLine>(ConfigureYLine);
@@ -37,93 +42,6 @@ public class ProgramManagementContext : DbContext
 
         // Add any database seeding here if needed
         // SeedData(modelBuilder);
-    }
-
-    private void ConfigureProject(EntityTypeBuilder<Project> builder)
-    {
-        builder.ToTable("Projects");
-
-        builder.HasKey(e => e.ProjectId);
-
-        builder.Property(e => e.ProjectId)
-            .IsRequired()
-            .HasMaxLength(50)
-            .HasComment("Unique identifier for the project");
-
-        builder.Property(e => e.ProjectType)
-            .IsRequired()
-            .HasMaxLength(50)
-            .HasComment("Type of the project");
-
-        builder.Property(e => e.ProjectDescription)
-            .HasMaxLength(500)
-            .HasComment("Detailed description of the project");
-
-        builder.Property(e => e.ProjectManager)
-            .HasMaxLength(100)
-            .HasComment("Name of the project manager");
-
-        builder.Property(e => e.Analyst)
-            .HasMaxLength(100)
-            .HasComment("Name of the project analyst");
-
-        builder.Property(e => e.BenchmarkFileId)
-            .HasMaxLength(100)
-            .HasComment("Reference to the benchmark file");
-
-        builder.Property(e => e.GoLiveDate)
-            .HasColumnType("datetime2")
-            .HasComment("Planned go-live date for the project");
-
-        builder.Property(e => e.LastEditDate)
-            .HasColumnType("datetime2")
-            .HasComment("Date of the last modification");
-
-        builder.Property(e => e.LastEditMSID)
-            .HasMaxLength(100)
-            .HasComment("MSID of the last user to edit the project");
-
-        builder.Property(e => e.Mileage)
-            .HasComment("Mileage value for the project");
-
-        builder.Property(e => e.NDBLOB)
-            .HasComment("NDBLOB value");
-
-        builder.Property(e => e.Status)
-            .IsRequired()
-            .HasMaxLength(50)
-            .HasComment("Current status of the project");
-
-        builder.Property(e => e.NewMarket)
-            .HasMaxLength(100)
-            .HasComment("New market information");
-
-        builder.Property(e => e.RefreshInd)
-            .HasDefaultValue(false)
-            .HasComment("Refresh indicator flag");
-
-        // Indexes
-        builder.HasIndex(e => e.Status)
-            .HasDatabaseName("IX_Projects_Status");
-
-        builder.HasIndex(e => e.GoLiveDate)
-            .HasDatabaseName("IX_Projects_GoLiveDate");
-
-        // Relationships
-        builder.HasMany(e => e.YLines)
-            .WithOne(e => e.Project)
-            .HasForeignKey(e => e.ProjectId)
-            .OnDelete(DeleteBehavior.Cascade);
-
-        builder.HasMany(e => e.Competitors)
-            .WithOne(e => e.Project)
-            .HasForeignKey(e => e.ProjectId)
-            .OnDelete(DeleteBehavior.Cascade);
-
-        builder.HasMany(e => e.Notes)
-            .WithOne(e => e.Project)
-            .HasForeignKey(e => e.ProjectId)
-            .OnDelete(DeleteBehavior.Cascade);
     }
 
     private void ConfigureYLine(EntityTypeBuilder<YLine> builder)
