@@ -9,16 +9,16 @@ namespace ProgramManagement.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ProjectController : ControllerBase
+public class ProjectApiController : ControllerBase
 {
     private readonly IProjectService _projectService;
     private readonly IMapper _mapper;
-    private readonly ILogger<ProjectController> _logger;
+    private readonly ILogger<ProjectApiController> _logger;
 
-    public ProjectController(
+    public ProjectApiController(
         IProjectService projectService,
         IMapper mapper,
-        ILogger<ProjectController> logger)
+        ILogger<ProjectApiController> logger)
     {
         _projectService = projectService ?? throw new ArgumentNullException(nameof(projectService));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
