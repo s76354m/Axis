@@ -1,4 +1,8 @@
-﻿namespace Axis.Services
+﻿using Microsoft.EntityFrameworkCore;
+using ProgramManagement.Data;
+using ProgramManagement.Models;
+
+namespace ProgramManagement.Services
 {
     public class CompetitorService : ICompetitorService
     {

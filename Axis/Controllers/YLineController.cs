@@ -1,9 +1,11 @@
-﻿using Axis.DataTransferObjects;
-using Axis.Services;
-using Microsoft.AspNetCore.Mvc;
-using System.Numerics;
+﻿using Microsoft.AspNetCore.Mvc;
+using ProgramManagement.DataTransferObjects;
+using ProgramManagement.Services;
+using AutoMapper;
+using Microsoft.Extensions.Logging;
+using ProgramManagement.Models;
 
-namespace Axis.Controllers
+namespace ProgramManagement.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

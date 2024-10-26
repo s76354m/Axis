@@ -1,9 +1,8 @@
-﻿using Axis.DataTransferObjects;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ProgramManagement.DTOs;
+namespace ProgramManagement.DataTransferObjects;
 
 public class ProjectDTO
 {

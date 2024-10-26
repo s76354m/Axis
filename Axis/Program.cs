@@ -5,6 +5,9 @@ using Microsoft.Extensions.Configuration;
 using System.Text.Json.Serialization;
 using ProgramManagement.Data;
 using ProgramManagement.Services;
+using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ProgramManagement;
 
@@ -15,16 +18,37 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container
-        builder.Services.AddControllers()
-            .AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-            });
-
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddControllersWithViews();
+        builder.Services.AddDbContext<ProgramManagementContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+        builder.Services.AddAutoMapper(typeof(Program).Assembly);
         builder.Services.AddSwaggerGen();
+
+        // Build the app
+        var app = builder.Build();
+
+        // Configure the HTTP request pipeline
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+        else
+        {
+            app.UseExceptionHandler("/Home/Error");
+            app.UseHsts();
+        }
+
+        app.UseHttpsRedirection();
+        app.UseStaticFiles();
+        app.UseRouting();
+        app.UseAuthorization();
+
+        app.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Home}/{action=Index}/{id?}");
+
+        app.Run();
 
         // Add DbContext
         builder.Services.AddDbContext<ProgramManagementContext>(options =>
@@ -35,8 +59,6 @@ public class Program
 
         // Add AutoMapper
         builder.Services.AddAutoMapper(typeof(Program).Assembly);
-
-        var app = builder.Build();
 
         // Configure the HTTP request pipeline
         if (app.Environment.IsDevelopment())

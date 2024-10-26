@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using ProgramManagement.Data;
 using ProgramManagement.Models;
 
 namespace ProgramManagement.Services;

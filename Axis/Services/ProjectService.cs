@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ProgramManagement.Data;
 using ProgramManagement.Models;
-using Microsoft.Extensions.Logging;
 
 namespace ProgramManagement.Services;
 

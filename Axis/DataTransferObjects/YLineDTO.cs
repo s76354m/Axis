@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Axis.DataTransferObjects
+namespace ProgramManagement.DataTransferObjects
 {
     public class YLineDTO
     {
@@ -13,5 +13,5 @@ namespace Axis.DataTransferObjects
         public bool IsOptional { get; set; }
     }
 
-    
+
 }

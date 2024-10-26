@@ -1,6 +1,8 @@
-﻿using System.Numerics;
+﻿using Microsoft.EntityFrameworkCore;
+using ProgramManagement.Data;
+using ProgramManagement.Models;
 
-namespace Axis.Services
+namespace ProgramManagement.Services
 {
     public interface IYLineService
     {

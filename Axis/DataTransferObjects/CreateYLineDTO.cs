@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Axis.DataTransferObjects
+namespace ProgramManagement.DataTransferObjects
 {
     public class CreateYLineDTO
     {

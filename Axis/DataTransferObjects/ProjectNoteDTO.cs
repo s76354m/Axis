@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Axis.DataTransferObjects
+namespace ProgramManagement.DataTransferObjects
 {
     public class ProjectNoteDTO
     {
@@ -14,5 +14,5 @@ namespace Axis.DataTransferObjects
         public string LastEditMSID { get; set; }
     }
 
-    
+
 }

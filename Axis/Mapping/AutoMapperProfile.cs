@@ -1,8 +1,11 @@
-﻿using Axis.DataTransferObjects;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Numerics;
+using ProgramManagement.DataTransferObjects;
+using AutoMapper;
+using ProgramManagement.Models;
 
-namespace Axis.Mapping
+
+namespace ProgramManagement.Mapping
 {
     public class AutoMapperProfile : Profile
     {

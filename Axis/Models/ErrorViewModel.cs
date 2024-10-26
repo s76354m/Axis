@@ -1,4 +1,4 @@
-namespace Axis.Models
+namespace ProgramManagement.Models
 {
     public class ErrorViewModel
     {

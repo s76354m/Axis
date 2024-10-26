@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using AutoMapper;
-using ProgramManagement.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using ProgramManagement.DataTransferObjects;
 using ProgramManagement.Services;
-using ProgramManagement.DTOs;
-using Axis.DataTransferObjects;
+using AutoMapper;
+using Microsoft.Extensions.Logging;
+using ProgramManagement.Models;
 
 namespace ProgramManagement.Controllers;
 
