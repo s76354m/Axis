@@ -1,4 +1,6 @@
-﻿namespace ProgramManagement.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ProgramManagement.Models;
 
 public class Competitor
 {

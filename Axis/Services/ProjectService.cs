@@ -93,4 +93,9 @@ public class ProjectService : IProjectService
             .AsNoTracking()
             .ToListAsync();
     }
+
+    public async Task<bool> ProjectExistsAsync(string projectId)
+    {
+        return await _context.Projects.AnyAsync(p => p.ProjectId == projectId);
+    }
 }
