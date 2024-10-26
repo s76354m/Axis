@@ -25,7 +25,7 @@ public class ProgramManagementContext : DbContext
 
         modelBuilder.Entity<Project>(entity =>
         {
-            entity.ToTable("CS_EXP_ProjectTranslation");
+            entity.ToTable("CS_EXP_Project_Translation");
             entity.HasKey(e => e.ProjectId);
 
             entity.Property(e => e.ProjectId)
@@ -59,13 +59,8 @@ public class ProgramManagementContext : DbContext
                 .HasMaxLength(100);
         });
 
-        // YLine Configuration
         modelBuilder.Entity<YLine>(ConfigureYLine);
-
-        // Competitor Configuration
         modelBuilder.Entity<Competitor>(ConfigureCompetitor);
-
-        // ProjectNote Configuration
         modelBuilder.Entity<ProjectNote>(ConfigureProjectNote);
 
         // Add any database seeding here if needed
