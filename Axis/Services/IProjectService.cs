@@ -13,4 +13,5 @@ public interface IProjectService
     Task<bool> DeleteProjectAsync(string id);
     Task<bool> UpdateProjectStatusAsync(string projectId, string newStatus, string msid);
     Task<IEnumerable<Project>> GetProjectsByStatusAsync(string status);
+    Task<bool> ProjectExistsAsync(string projectId);
 }

@@ -13,4 +13,13 @@ public class Competitor
 
     // Navigation property
     public Project Project { get; set; } = null!;
+
+    [Display(Name = "CSP Indicator")]
+    public bool CSPIndicator { get; set; }
+    
+    [Display(Name = "EI Indicator")]
+    public bool EIIndicator { get; set; }
+    
+    [Display(Name = "MR Indicator")]
+    public bool MRIndicator { get; set; }
 }

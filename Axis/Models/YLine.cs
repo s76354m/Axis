@@ -12,4 +12,10 @@ public class YLine
 
     // Navigation property
     public Project Project { get; set; } = null!;
+
+    [Display(Name = "Pre-Award")]
+    public bool IsPreAward { get; set; }
+    
+    [Display(Name = "Optional")]
+    public bool IsOptional { get; set; }
 }
