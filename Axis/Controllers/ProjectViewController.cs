@@ -23,7 +23,7 @@ namespace ProgramManagement.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            return View(new Project { LastEditDate = DateTime.UtcNow });
         }
 
         [HttpPost]
@@ -35,13 +35,17 @@ namespace ProgramManagement.Controllers
                 try
                 {
                     project.LastEditDate = DateTime.UtcNow;
+                    project.Status = "New"; // Set default status
+                    project.LastEditMSID = User.Identity?.Name ?? "System";
+                    
                     await _projectService.CreateProjectAsync(project);
+                    TempData["Success"] = "Project created successfully.";
                     return RedirectToAction("Index", "Home");
                 }
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, "Error creating project");
-                    ModelState.AddModelError("", "Error creating project");
+                    ModelState.AddModelError("", "Error creating project. Please try again.");
                 }
             }
             return View(project);
@@ -49,6 +53,13 @@ namespace ProgramManagement.Controllers
 
         public async Task<IActionResult> Update(string id)
         {
+            if (string.IsNullOrEmpty(id))
+            {
+                // If no ID is provided, show a list of projects to select from
+                var projects = await _projectService.GetAllProjectsAsync();
+                return View("ProjectList", projects);
+            }
+
             var project = await _projectService.GetProjectByIdAsync(id);
             if (project == null)
             {

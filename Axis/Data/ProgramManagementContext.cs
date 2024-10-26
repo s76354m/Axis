@@ -23,12 +23,40 @@ public class ProgramManagementContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        // Project Configuration
         modelBuilder.Entity<Project>(entity =>
         {
-            entity.ToTable("CS_EXP_Project_Translation");
+            entity.ToTable("CS_EXP_ProjectTranslation");
             entity.HasKey(e => e.ProjectId);
-            // Other configurations from your existing ConfigureProject method
+
+            entity.Property(e => e.ProjectId)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            entity.Property(e => e.ProjectType)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            entity.Property(e => e.ProjectDescription)
+                .HasMaxLength(500);
+
+            entity.Property(e => e.ProjectManager)
+                .HasMaxLength(100);
+
+            entity.Property(e => e.Analyst)
+                .HasMaxLength(100);
+
+            entity.Property(e => e.BenchmarkFileId)
+                .HasMaxLength(100);
+
+            entity.Property(e => e.LastEditMSID)
+                .HasMaxLength(100);
+
+            entity.Property(e => e.Status)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            entity.Property(e => e.NewMarket)
+                .HasMaxLength(100);
         });
 
         // YLine Configuration

@@ -1,0 +1,38 @@
+@model IEnumerable<ProgramManagement.Models.Project>
+
+@{
+    ViewData["Title"] = "Select Project";
+}
+
+<h1>Select Project to Update</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Project ID</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var project in Model)
+        {
+            <tr>
+                <td>@project.ProjectId</td>
+                <td>@project.ProjectType</td>
+                <td>@project.ProjectDescription</td>
+                <td>@project.Status</td>
+                <td>
+                    <a asp-action="Update" asp-route-id="@project.ProjectId" class="btn btn-primary btn-sm">Select</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Back to Home</a>
+</div>
+
