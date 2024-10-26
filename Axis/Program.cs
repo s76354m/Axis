@@ -55,14 +55,14 @@ public class Program
             pattern: "{controller=Home}/{action=Index}/{id?}");
 
         // Add DbContext
-        builder.Services.AddDbContext<ProgramManagementContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+        //builder.Services.AddDbContext<ProgramManagementContext>(options =>
+        //    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
         // Register Services
-        builder.Services.AddScoped<IProjectService, ProjectService>();
+        //builder.Services.AddScoped<IProjectService, ProjectService>();
 
         // Add AutoMapper
-        builder.Services.AddAutoMapper(typeof(Program).Assembly);
+        //builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
         // Configure the HTTP request pipeline
         if (app.Environment.IsDevelopment())
